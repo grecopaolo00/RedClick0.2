@@ -14,6 +14,7 @@ public class Screen1 extends Form implements HandlesEventDispatching
 {		
 	// declare all your components as instance variables
 	private Button buttonPlus;
+	private Button buttonMinus;
 	private Label number;
 	
 	// $define is where you'll create components, initialize properties and make any calls that 
@@ -23,10 +24,11 @@ public class Screen1 extends Form implements HandlesEventDispatching
 		// create the button component
 		number = new Label(this);
 		buttonPlus = new Button(this);  // the parameter defines the parent for the component,
-									   // in this case, "this" the screen.
-									   // if you had an arrangement, you'd refer to it instead.
+		buttonMinus = new Button(this); // in this case, "this" the screen.
+									    // if you had an arrangement, you'd refer to it instead.
 		number.Text("1");
 		buttonPlus.Text("+");
+		buttonMinus.Text("-");
 		
 		// register all events that you want to respond to. The second parameter is
 	    // just a name, the third is the event you care about and its component-independent
@@ -43,6 +45,11 @@ public class Screen1 extends Form implements HandlesEventDispatching
 				ButtonClick();
 				return true;
 		}
+		else if( component.equals(buttonMinus) && eventName.equals("Click") )
+		{
+				ButtonMinusClick();
+				return true;
+		}
 		// here is where you'd check for other events of your app...
 		return false;
 	}
@@ -52,5 +59,9 @@ public class Screen1 extends Form implements HandlesEventDispatching
 		int tmp = Integer.valueOf(number.Text());
 		number.Text(String.valueOf(++tmp));
 	}
-	
+	public void ButtonMinusClick()
+	{
+		int tmp = Integer.valueOf(number.Text());
+		number.Text(String.valueOf(--tmp));
+	}
 }
